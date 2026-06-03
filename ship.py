@@ -17,5 +17,5 @@ class Ship():
         self.screen.blit(self.image, self.rect) # draws the image on the screen with the specified rect value
 
     def update(self):
-        if self.moving_right():
+        if self.moving_right:
             self.rect.centerx += 1
