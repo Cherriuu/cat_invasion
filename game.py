@@ -1,27 +1,29 @@
 import pygame
 import game_functions as gf
+from pygame.sprite import Group
 
 from settings import Settings
-from ship import Ship
+from cat import Cat
 
 def run_game():
     pygame.init() # creates the blank slate and initiates needed settings
     ai_settings = Settings()
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height)) # sets the screen size, this is called a surface
-    pygame.display.set_caption("Alien Invasion")
+    pygame.display.set_caption("Cat Invasion")
 
-    ship = Ship(screen, ai_settings)
-
-    bg_color = (0,0,255) # pygame background colors range from 0 to 255 and uses red, green, and blue mixes
+    cat = Cat(screen, ai_settings)
+    bullets = Group()
 
     while True: # surface is redrawn through every iteration of this
         # this is called an event loop that will perform a task based off the kind of event that has occured
 
-        gf.check_event(ship)
+        gf.check_event(cat, ai_settings, screen, bullets)
 
-        ship.update()
+        cat.update()
 
-        gf.update_screen(ai_settings, screen, ship)
+        bullets.update()
+
+        gf.update_screen(ai_settings, screen, cat, bullets)
 
 
 run_game()
