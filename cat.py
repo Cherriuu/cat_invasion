@@ -1,7 +1,9 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Cat():
+class Cat(Sprite):
     def __init__(self, screen, ai_settings):
+        super().__init__()
         self.screen = screen
         self.ai_settings = ai_settings
 
@@ -28,3 +30,6 @@ class Cat():
             self.center -= self.ai_settings.ship_speed_factor
 
         self.rect.centerx = self.center
+
+    def center_cat(self):
+        self.center = self.screen_rect.centerx
